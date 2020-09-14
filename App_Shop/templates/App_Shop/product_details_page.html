@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+# here we can use object.product_name OR product.product_name. prodect = object
+{% block title_block %} {{ product.product_name }} {% endblock title_block %}
+
+{% block body_block %}
+<div class="container my-5">
+    <div class="card">
+        <div class="row">
+            <aside class="col-sm-5 border-right">
+                <article class="gallery-wrap">
+                    <div class="img-big-wrap">
+                        <div>
+                            <a href="#"><img src="/media/{{ product.product_image }}" style="width:450px"></a>
+                        </div>
+                    </div>
+                </article>
+            </aside>
+            <div class="col-sm-7">
+                <article class="card-body p-3 gallery-wrap-side">
+                    <h3 class="title py-3">{{ product.product_name }}</h3>
+                    <p class="price-detail-wrap">
+                        <span class="price h3 text-warning">
+                            <span class="currency">BDT &#2547;</span><span class="num">{{ object.product_price }}</span>
+                        </span>
+                    </p>
+                    <dl class="item-property">
+                        <dt>Description</dt>
+                        <dd>
+                            <p>{{ object.product_detail_text|linebreaks }}</p>
+                        </dd>
+                    </dl>
+                    <br>
+                    <a href="{% url 'App_Order:add_to_cart' pk=object.pk %}"
+                        class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add
+                        to Cart</a>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body_block %}
