@@ -137,3 +137,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR
 
 LOGIN_URL = '/accounts/login/'
+
+#  Deployed project can't be run local computer, so created a new file local_settings so that we can say try this either that
+try:
+    from .local_settings import *
+except ImportError:
+    print("Looks like no local host, there must be in production host")
+    
